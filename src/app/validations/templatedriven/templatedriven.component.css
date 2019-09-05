@@ -1,0 +1,28 @@
+.error {
+    color:red
+}
+
+.uname {
+    width: 20%;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.mobile{
+    width: 20%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.email{
+    width: 30%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.address{
+     width: 30%;
+     height: 30%;
+     margin-bottom: 10px;
+     padding-bottom: 10px;
+}

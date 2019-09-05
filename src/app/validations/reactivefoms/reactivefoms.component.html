@@ -1,0 +1,74 @@
+<h3 style="margin-left: 102px;">Reactive Form</h3>
+
+<form [formGroup]="nestedForm" (ngSubmit)="submitted()" class="form-group">
+  <div class="table-size">
+  <table class="mar-left-60">
+    <tr>
+      <td class="form2">Name: </td>
+        <input type ="text" formControlName="userName" placeholder="EnterName" class="form-control form1"  required>
+       <div [ngClass]="{'has-error':nestedForm.get('userName').errors && (nestedForm.get('userName').touched)||(nestedForm.get('userName').dirty)}">
+        <span class="help-block" *ngIf="nestedForm.get('userName').errors && (nestedForm.get('userName').touched)||(nestedForm.get('userName').dirty)">
+        <span *ngIf="nestedForm.get('userName').errors.required">
+          userName is required
+         </span>
+        </span>
+       </div>
+      
+    </tr>
+    
+    <tr>
+      <td class="form2">Email: </td>
+      <td>
+        <input  type ="text" formControlName="email" placeholder="EnterNAme" class="form-control form1" >
+      </td>
+    </tr>
+    <button class="btn btn-primary" style="margin-left: 90px;" (click)="addAddress()">ADD  </button>
+<hr>
+
+<div style="margin-left: 102px;">
+    <h4>
+      ADDRESS
+    </h4>
+   </div>
+
+     <div formArrayName="address" *ngFor="let address of nestedForm.get('address').controls; let i=index" class="form2">
+        <div [formGroupName]="i">
+        <div class="form-group">
+            <td class="form">PlotNo: </td>
+        <input  [id]="'plot'+i" placeholder="Enter plot number" formControlName="plotno"
+        required />
+        </div>
+        <div class="form-group">
+            <td class="form">Residency: </td>
+            <input  [id]="'Residency'+i" placeholder="Enter Residency" formControlName="Residency"
+            required />
+            </div>
+            <div class="form-group">
+                <td class="form">Locality: </td>
+                <input  [id]="'locality'+i" placeholder="Enter Locality" formControlName="locality"
+                required />
+                </div>
+                <div class="form-group">
+                    <td class="form">Landmark: </td>
+                    <input  [id]="'Landmark'+i" placeholder="Enter Landmark" formControlName="Landmark"
+                    required />
+                    </div>
+                
+                <div class="form-group">
+                    <td class="form">Pincode: </td>
+                    <input  [id]="'pincode'+i" placeholder="Enter Pincode" formControlName="pincode"
+                    required />
+                    </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="removeAddress(i)"
+        style="margin-bottom: 20px;text-align: center">delete</button>
+        </div>
+
+        <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" type="submit" >Submit</button>
+            </td>
+        </tr>
+  </table>
+  </div>
+</form>

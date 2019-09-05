@@ -1,0 +1,59 @@
+<h3 style="margin-left: 102px;">Template Driven Form</h3>
+
+<!-- {{num1+num2}} -->
+
+<!-- AFTER FORM SUBMITTION MESSAGE TO USER -->
+
+<p style="margin-left: 102px;" *ngIf="isValidFormSubmitted" [ngClass]="'success'">
+  Form submitted successfully.
+</p>
+
+<form #userForm="ngForm" (ngSubmit)="login(userForm)">
+    <div>
+        <td>Name* </td>
+        <input class="form-control uname error" name="userName" placeholder="user name" [(ngModel)]="signUpForm.name" pattern="^[a-zA-Z][a-zA-Z\\s]+$" maxlength="10" minlength="2" #uname="ngModel" required>
+        <div *ngIf="uname.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            Name required.
+        </div>
+        <div *ngIf="uname.errors?.maxlengh && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            maxlength of 10 characters.
+        </div>
+        <div *ngIf="uname.errors?.minlength && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+            minlength of 2 characters.
+        </div>
+
+        <td>LastName*</td>
+        <input style="width: 20%;" class="form-control lastname error" name="lastName" placeholder="last name" [(ngModel)]="signUpForm.lastName" pattern="^[a-zA-Z][a-zA-Z\\s]+$" maxlength="10" minlength="2" #uname="ngModel" required>
+    </div>
+
+    <td> Mobile* </td>
+    <input class="form-control mobile" name="mobile" placeholder="mobile" [(ngModel)]="signUpForm.mobile" #mobile="ngModel" pattern="^[5-9]\d{9}$" required minlength="11" maxlength="10">
+    <div *ngIf="mobile.errors?.pattern && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        Enter valid Phonenumber.
+    </div>
+    <div *ngIf="mobile.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        please enter phone number.
+    </div>
+    <div *ngIf="mobile.errors?.maxlength && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        minlength of 10 Numericals.
+    </div>
+
+    <td>Email*</td>
+    <input class="form-control mobile" name="email" placeholder="email" [(ngModel)]="signUpForm.email" #email="ngModel" pattern="^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])" required>
+    <div *ngIf="email.errors?.pattern && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        email pattern google@mtwlabs.com.
+    </div>
+    <div *ngIf="email.errors?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        email is required.
+    </div>
+    <td>Country</td>
+    <input class="form-control mobile" name="Country" placeholder="Country" [(ngModel)]="signUpForm.country" #country="ngModel" maxlength="25" minlength="5" required>
+    <div *ngIf="country.error?.required && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+       country is Required.
+    </div>
+    <td>Language</td>
+    <input class="form-control mobile" name="Language" placeholder="Language" [(ngModel)]="signUpForm.language" #address="ngModel" required>
+
+    <button class="btn btn-primary" type="submit">submit</button>
+
+</form>
